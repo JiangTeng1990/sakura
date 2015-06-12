@@ -1,0 +1,1 @@
+#memcache ÕûºÏ hibernate spring
