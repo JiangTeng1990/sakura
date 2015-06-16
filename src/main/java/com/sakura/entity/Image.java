@@ -9,65 +9,81 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
-@Table(name = "user")
+@Table(name = "image")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class User {
+public class Image {
+	
 	@Id
 	@GeneratedValue
 	private Long id;
 	
+	private String originName;
+	
 	private String name;
 	
-	private String password;
-
+	private String location;
+	
+	/**
+	 * Default constructor
+	 */
+	public Image() {
+		
+	}
+	
+	public Image(String originName, String name, String location) {
+		super();
+		this.originName = originName;
+		this.name = name;
+		this.location = location;
+	}
+	
 	/**
 	 * @return the id
 	 */
 	public Long getId() {
 		return id;
 	}
-
 	/**
 	 * @return the name
 	 */
 	public String getName() {
 		return name;
 	}
-
 	/**
-	 * @return the password
+	 * @return the location
 	 */
-	public String getPassword() {
-		return password;
+	public String getLocation() {
+		return location;
 	}
-
+	/**
+	 * @return the originName
+	 */
+	public String getOriginName() {
+		return originName;
+	}
 	/**
 	 * @param id the id to set
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	/**
 	 * @param name the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	/**
-	 * @param password the password to set
+	 * @param location the location to set
 	 */
-	public void setPassword(String password) {
-		this.password = password;
+	public void setLocation(String location) {
+		this.location = location;
 	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+	/**
+	 * @param originName the originName to set
 	 */
-	@Override
-	public String toString() {
-		return "User [name=" + name + ", password=" + password + "]";
+	public void setOriginName(String originName) {
+		this.originName = originName;
 	}
 	
 }

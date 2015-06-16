@@ -3,12 +3,17 @@ package com.sakura.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.spy.memcached.spring.MemcachedClientFactoryBean;
+
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
+import com.googlecode.hibernate.memcached.MemcacheClientFactory;
+import com.googlecode.hibernate.memcached.spymemcached.SpyMemcache;
+import com.googlecode.hibernate.memcached.spymemcached.SpyMemcacheClientFactory;
 import com.sakura.entity.User;
 
 public class UserDao {
@@ -34,6 +39,16 @@ public class UserDao {
 		long end = System.currentTimeMillis();
 		System.out.println(end - start);
 		return list;
+	}
+	
+	public User view(Long id) {
+		SessionFactory sessionFactory = hibernateTemplate.getSessionFactory();
+		Session session = sessionFactory.openSession();
+		long start = System.currentTimeMillis();
+		User user = (User) session.load(User.class, id);
+		long end = System.currentTimeMillis();
+		System.err.println(end - start);
+		return user;
 	}
 	
 	/**

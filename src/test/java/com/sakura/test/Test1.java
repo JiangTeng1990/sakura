@@ -32,4 +32,20 @@ public class Test1 {
 			System.out.println(user);
 		}
 	}
+	
+	@Test
+	public void testCache() {
+		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		UserDao userDao = (UserDao)context.getBean("userDao");
+		long id1 = 1L;
+		long id2 = 2L;
+//		for(int i = 0; i < 3; i++) {
+//			User user1 = userDao.view(id1);
+//			System.out.println(user1);
+//			User user2 = userDao.view(id2);
+//			System.out.println(user2);
+//		}
+		User user1 = userDao.view(id1);
+		System.out.println(user1);
+	}
 }

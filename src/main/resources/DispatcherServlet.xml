@@ -10,26 +10,19 @@
 				http://www.springframework.org/schema/mvc
 				http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 	
-	  <bean id="urlPathHelper" class="org.springframework.web.util.UrlPathHelper">
-		    <!-- this is to fix problem when getServletPath in UrlPathHelper returns the wrong data -->
-		    <property name="alwaysUseFullPath" value="true" />
-		    <!-- this is to enable-matrix-variables -->
-		    <property name="removeSemicolonContent" value="false" />
-		</bean>
-		
-		<bean id="flashMapManager" class="org.springframework.web.servlet.support.SessionFlashMapManager">
-		    <property name="urlPathHelper" ref="urlPathHelper" />
-		</bean>
-		
 		<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 		<context:component-scan base-package="com.sakura.web.controller"></context:component-scan>
 		
+ 		<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"></bean> 
+		<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"></bean> 
+		
 		<!-- Handles HTTP GET requests for /static/** by efficiently serving up static resources in the ${webapp}/static/ directory -->
 		<mvc:resources mapping="/upload/**" location="/upload/" />
+		<mvc:resources mapping="/pictures/**" location="/pictures/" />
 		<mvc:resources mapping="/temp/**" location="/temp/" />
 		
 		<mvc:view-controller path="/jsps/**" />
-				
+		
 		<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		    <property name="prefix" value="/WEB-INF/jsps/" />  
 	        <property name="suffix" value=".jsp" />  
